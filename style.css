@@ -4,6 +4,7 @@ html {
     background-color: #8C5638;
     height: 100vh;
     box-sizing: border-box;
+    text-shadow: 2px 2px 0px black;
 }
 
 body {
@@ -17,16 +18,19 @@ body {
     padding: 5px;
     align-items: center;
     height: 3rem;
+    border-bottom: solid 3px black;
 }
 .content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 1rem;
     justify-items: center;
     align-items: center;
     background-color: #CAB19B;
     width: 100%;
     height: 80vh;
+    overflow: auto;
 }
 
 .footer {
@@ -46,6 +50,8 @@ body {
     background-color: #A76B50;
     border-color: #A76B50;
     border-radius: 0.2rem;
+    box-shadow: 2px 2px 0 black;
+    text-shadow: 2px 2px 0px black;
 
 }
 
@@ -57,12 +63,15 @@ form {
     display: flex;
     flex-direction: column;
     background-color: #A76B50;
-    color: black;
-    border: solid 1px;
+    border: solid 1px black;
     border-radius: 6px;
     z-index: 10;
     padding: 0.5rem;
     height: 16rem;
+    box-shadow: 2px 2px 0 black;
+    color: white;
+    font-weight: bold;
+
 }
 
 .form-header {
@@ -90,6 +99,11 @@ form {
     gap: 0.4rem;
 }
 
+input {
+    border: solid 1px black;
+    border-radius: 1px;
+}
+
 input:focus {
     outline: none;
 }
@@ -100,4 +114,16 @@ input:focus {
     flex-direction: column;
     gap: 0.3rem;
     padding-top: 0.5rem;
+}
+
+.X {
+    cursor: default;
+}
+
+.book {
+    background-color: white;
+    align-self: center;
+    justify-self: center;
+    height: 12rem;
+    width: 10rem;
 }

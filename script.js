@@ -6,6 +6,7 @@ let closeBookForm = document.querySelector('.X');
 
 
 let form = document.querySelector('form');
+let content = document.querySelector('.content');
 
 let bookTitle = form.querySelector('#title');
 let bookAuthor = form.querySelector('#author');
@@ -31,7 +32,10 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function showNewBook() {
-
+    let newBook = document.createElement('div');
+    content.appendChild(newBook);
+    newBook.classList.add('book')
+    newBook.textContent = 'hellya';
 };
 
 function clearForm() {
@@ -53,4 +57,5 @@ closeBookForm.addEventListener('click', () => {
 submitBtn.addEventListener('click', () => {
     addBookToLibrary();
     bookForm.style = 'transform: translate(-50%, -50%) scale(0)'; 
+    showNewBook();
 });
