@@ -11,11 +11,12 @@
     <title>Library</title>
 </head>
 <body>
-    <div class="header">
-        <h1>Library</h1>
-    </div>
-    <div class="content">
-        <form action="" id="book-form">
+    <form action="" id="book-form">
+        <div class="form-header">
+            <div>Book Info</div>
+            <div class="X">&times;</div>
+        </div>
+        <div class="inputs">
             <div class="input">
                 <label for="title">Title</label>
                 <input type="text" name="book_title" id="title">
@@ -28,14 +29,19 @@
                 <label for="pages">Number of pages</label>
                 <input type="number" name="book_pages" id="pages">
             </div>
-            <div class="input">
+            <div class="checkbox">
                 <label for="read">Have you read it yet?</label>
                 <input type="checkbox" name="read_status" id="read">
             </div>
             <div class="input">
                 <button class="submit">Submit</button>
             </div>
-        </form>
+        </div>
+    </form>
+    <div class="header">
+        <h1>Library</h1>
+    </div>
+    <div class="content">
     </div>
     <div class="footer">
         <button class="add-book">Add book</button>
