@@ -30,19 +30,27 @@ function addBookToLibrary(title, author, pages, read) {
     library.push(book);
 }
 
-function showNewBook {
+function showNewBook() {
 
 };
 
+function clearForm() {
+    bookAuthor.value = '';
+    bookTitle.value = '';
+    bookPages.value = '';
+    bookRead.checked = false;
+};
+
 addBookBtn.addEventListener('click', () => {
+    clearForm();
     bookForm.style = 'transform: translate(-50%, -50%) scale(1)';
-})
+});
 
 closeBookForm.addEventListener('click', () => {
     bookForm.style = 'transform: translate(-50%, -50%) scale(0)'; 
-})
+});
 
 submitBtn.addEventListener('click', () => {
     addBookToLibrary();
     bookForm.style = 'transform: translate(-50%, -50%) scale(0)'; 
-})
+});
