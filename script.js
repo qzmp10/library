@@ -1,10 +1,16 @@
 //Don't know why not working, will restart
 let addBookBtn = document.querySelector('.add-book');
+let bookForm = document.querySelector('form');
+let submitBtn =  document.querySelector('.submit');
+let closeBookForm = document.querySelector('.X');
 
-let bookTitle = document.querySelector('#title');
-let bookAuthor = document.querySelector('#author');
-let bookPages = document.querySelector('#pages');
-let bookRead = document.querySelector('#read');
+
+let form = document.querySelector('form');
+
+let bookTitle = form.querySelector('#title');
+let bookAuthor = form.querySelector('#author');
+let bookPages = form.querySelector('#pages');
+let bookRead = form.querySelector('#read');
 
 let library = [];
 
@@ -15,10 +21,28 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
-function addBookToLibrary() {
-
+function addBookToLibrary(title, author, pages, read) {
+    title = bookTitle.value;
+    author = bookAuthor.value;
+    pages = bookPages.value;
+    read = bookRead.value;
+    let book = new Book(title, author, pages, read);
+    library.push(book);
 }
-addBookBtn.addEventListener('click', () => {
 
+function showNewBook {
+
+};
+
+addBookBtn.addEventListener('click', () => {
+    bookForm.style = 'transform: translate(-50%, -50%) scale(1)';
 })
 
+closeBookForm.addEventListener('click', () => {
+    bookForm.style = 'transform: translate(-50%, -50%) scale(0)'; 
+})
+
+submitBtn.addEventListener('click', () => {
+    addBookToLibrary();
+    bookForm.style = 'transform: translate(-50%, -50%) scale(0)'; 
+})
