@@ -12,6 +12,7 @@ let bookAuthor = form.querySelector('#author');
 let bookPages = form.querySelector('#pages');
 let bookRead = form.querySelector('#read');
 
+
 //array for all the books to be stored
 let library = [];
 
@@ -31,22 +32,50 @@ function addBookToLibrary(title, author, pages, read) {
     title = bookTitle.value;
     author = bookAuthor.value;
     pages = bookPages.value;
-    read = bookRead.value;
+    if (bookRead.checked = true) {
+        read = "Read";
+    } else {
+        read = 'Not read yet';
+    }
     let book = new Book(title, author, pages, read);
     library.push(book);
     currentBook.push(book);
 }
 
-//creates a div where the book information will be shown
+function toggleReadBtn(e) {
+    e.target.style = 'background-color: rgb(255, 124, 124)'
+}
+
+//creates a div where the book information will be shown (title, author, number of pages, read status)
 function showNewBook() {
     let newBook = document.createElement('div');
     content.appendChild(newBook);
-    newBook.classList.add('book')
+    newBook.classList.add('book');
+
     Object.values(currentBook[0]).forEach(value => {
         let newBookInfo = document.createElement('div');
         newBook.appendChild(newBookInfo);
-        newBookInfo.textContent = `${value}`;
+        newBookInfo.classList.add('new-book-info');
+
+        // depending on the value in the object, text content changes
+        if (value == currentBook[0].title) {
+        newBookInfo.textContent = `Title: ${value}`;
+
+        } else if (value == currentBook[0].author) {
+            newBookInfo.textContent = `by ${value}`;
+
+        } else if (value == currentBook[0].pages) {
+            newBookInfo.textContent = `${value} pages`;
+
+        } else if (value == currentBook[0].read) {
+            newBookInfo.textContent = `Read status:`;
+        } 
     });
+
+    let readToggle = document.createElement('button');
+    readToggle.classList.add('read-toggle');
+    newBook.appendChild(readToggle);
+    readToggle.onclick = toggleReadBtn;
 };
 
 //clears the values in the add book form

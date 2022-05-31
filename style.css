@@ -125,9 +125,30 @@ input:focus {
 .book {
     display: flex;
     flex-direction: column;
-    background-color: white;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+    background-color: #8C5638;
     align-self: center;
     justify-self: center;
     height: 22rem;
     width: 75%;
+    border: solid 1px black;
+    border-radius: 6px;
+    box-shadow: 2px 2px 0 black;
+    font-size: 1.4rem;
+    font-weight: bold;
+
 }
+
+.read-toggle {
+    width: 8rem;
+    height: 2rem;
+    color: black;
+    background-color: rgb(145, 255, 142);
+    border: solid 1px black;
+    border-radius: 4px;
+    box-shadow: 2px 2px 0 black;
+}
+
+
