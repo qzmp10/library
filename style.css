@@ -149,6 +149,20 @@ input:focus {
     border: solid 1px black;
     border-radius: 4px;
     box-shadow: 2px 2px 0 black;
+
 }
 
+.not-read-toggle {
+    background-color: rgb(255, 144, 144);
+}
+
+.remove-book {
+    width: 8rem;
+    height: 2rem;
+    color: black;
+    background-color: rgb(255, 38, 38);
+    border: solid 1px black;
+    border-radius: 4px;
+    box-shadow: 2px 2px 0 black;
+}
 

@@ -16,9 +16,6 @@ let bookRead = form.querySelector('#read');
 //array for all the books to be stored
 let library = [];
 
-//same as library but only shows the current book, mostly used to create the new divs to show off the book info
-let currentBook = [];
-
 // book object
 function Book(title, author, pages, read) {
     this.title = title,
@@ -27,55 +24,75 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
+// i need a function that 
+
 //adds the book & its information to the library array
 function addBookToLibrary(title, author, pages, read) {
     title = bookTitle.value;
     author = bookAuthor.value;
     pages = bookPages.value;
-    if (bookRead.checked = true) {
+    if (bookRead.checked === true) {
         read = "Read";
     } else {
         read = 'Not read yet';
     }
     let book = new Book(title, author, pages, read);
     library.push(book);
-    currentBook.push(book);
 }
 
-function toggleReadBtn(e) {
-    e.target.style = 'background-color: rgb(255, 124, 124)'
-}
 
-//creates a div where the book information will be shown (title, author, number of pages, read status)
-function showNewBook() {
-    let newBook = document.createElement('div');
-    content.appendChild(newBook);
-    newBook.classList.add('book');
+//creates new book in content, creates toggle button & remove button
+function newBook() {
+    let bookDiv = document.createElement('div');
+    content.appendChild(bookDiv);
+    bookDiv.classList.add('book');
 
-    Object.values(currentBook[0]).forEach(value => {
-        let newBookInfo = document.createElement('div');
-        newBook.appendChild(newBookInfo);
-        newBookInfo.classList.add('new-book-info');
+    let titleDiv = document.createElement('div');
+    bookDiv.appendChild(titleDiv);
+    titleDiv.textContent = `${library[library.length - 1].title}`;
 
-        // depending on the value in the object, text content changes
-        if (value == currentBook[0].title) {
-        newBookInfo.textContent = `Title: ${value}`;
+    let authorDiv = document.createElement('div');
+    bookDiv.appendChild(authorDiv);
+    authorDiv.textContent = `by ${library[library.length - 1].author}`;
 
-        } else if (value == currentBook[0].author) {
-            newBookInfo.textContent = `by ${value}`;
+    let pagesDiv = document.createElement('div');
+    bookDiv.appendChild(pagesDiv);
+    pagesDiv.textContent = `${library[library.length - 1].pages} pages`;
 
-        } else if (value == currentBook[0].pages) {
-            newBookInfo.textContent = `${value} pages`;
+    let toggleRead = document.createElement('button');
+    bookDiv.appendChild(toggleRead);
+    toggleRead.classList.add('read-toggle');
+    if (library[library.length - 1].read == 'Not read yet') {
+        toggleRead.classList.add('not-read-toggle');
+        toggleRead.textContent = 'Not read yet';
+    } else {
+        toggleRead.textContent = 'Read';
+    }
+    toggleRead.onclick = function toggleReadStatus(bookFound) {
+        //find the book object with the same title in the library array, then toggle the read status of that book when button is clicked
+        bookFound = library.find(Book => Book.title === titleDiv.textContent);
+        if(bookFound.read == 'Read') {
+            bookFound.read = 'Not read yet';
+            toggleRead.textContent = 'Not read yet';
+        } else {
+            bookFound.read = 'Read';
+            toggleRead.textContent = 'Read';
+        }
+        toggleRead.classList.toggle('not-read-toggle');
+    };
 
-        } else if (value == currentBook[0].read) {
-            newBookInfo.textContent = `Read status:`;
-        } 
-    });
-
-    let readToggle = document.createElement('button');
-    readToggle.classList.add('read-toggle');
-    newBook.appendChild(readToggle);
-    readToggle.onclick = toggleReadBtn;
+    let removeBook = document.createElement('button');
+    bookDiv.appendChild(removeBook);
+    removeBook.classList.add('remove-book');
+    removeBook.textContent = '❌ REMOVE';
+    removeBook.onclick = function removeCurrentBook(currentBook) {
+        //finds index of currentbook by checking which object.title has the same title
+        currentBook = library.findIndex(Book => Book.title === titleDiv.textContent);
+        //splice the book from the library array
+        library.splice(currentBook, 1);
+        //remove the book from the dom
+        removeBook.parentElement.remove()
+    }
 };
 
 //clears the values in the add book form
@@ -101,7 +118,5 @@ closeBookForm.addEventListener('click', () => {
 submitBtn.addEventListener('click', () => {
     addBookToLibrary();
     bookForm.style = 'transform: translate(-50%, -50%) scale(0)'; 
-    showNewBook();
-    //clear current book after the book info is displayed
-    currentBook = [];
+    newBook();
 });
