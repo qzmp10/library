@@ -24,7 +24,6 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
-// i need a function that 
 
 //adds the book & its information to the library array
 function addBookToLibrary(title, author, pages, read) {
